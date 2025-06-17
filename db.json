@@ -1,0 +1,126 @@
+{
+  "games_indie": {
+    "hollow_knight": {
+      "id": "hollow_knight",
+      "nome": "Hollow Knight",
+      "genero": "Metroidvania",
+      "plataforma": "PC/Switch"
+    },
+    "celeste": {
+      "id": "celeste",
+      "nome": "Celeste",
+      "genero": "Plataforma",
+      "plataforma": "PC/Console"
+    },
+    "stardew_valley": {
+      "id": "stardew_valley",
+      "nome": "Stardew Valley",
+      "genero": "Simulação/Fazenda",
+      "plataforma": "Multiplataforma"
+    },
+    "teste": {
+      "id": "teste",
+      "nome": "teste",
+      "genero": "Puzzle/Plataforma",
+      "plataforma": "Multiplataforma"
+    },
+    "inside": {
+      "id": "inside",
+      "nome": "Inside",
+      "genero": "Puzzle/Plataforma",
+      "plataforma": "Multiplataforma"
+    }
+  },
+  "filmes_geek": {
+    "matrix": {
+      "id": "matrix",
+      "nome": "Matrix",
+      "ano": 1999,
+      "duracao": 136
+    },
+    "interestelar": {
+      "id": "interestelar",
+      "nome": "Interestelar",
+      "ano": 2014,
+      "duracao": 169
+    },
+    "ready_player_one": {
+      "id": "ready_player_one",
+      "nome": "Ready Player One",
+      "ano": 2018,
+      "duracao": 140
+    },
+    "vingadores_ultimato": {
+      "id": "vingadores_ultimato",
+      "nome": "Vingadores: Ultimato",
+      "ano": 2019,
+      "duracao": 181
+    },
+    "FILMEGEEK-vZdAY": {
+      "id": "FILMEGEEK-vZdAY",
+      "nome": "Blade Runner 2049",
+      "ano": 2017,
+      "duracao": 163
+    }
+  },
+  "livros_fantasia_medieval": {
+    "senhor_dos_aneis": {
+      "id": "senhor_dos_aneis",
+      "nome": "O Senhor dos Anéis: A Sociedade do Anel",
+      "autor": "J.R.R. Tolkien",
+      "lido": true
+    },
+    "nome_do_vento": {
+      "id": "nome_do_vento",
+      "nome": "O Nome do Vento",
+      "autor": "Patrick Rothfuss",
+      "lido": false
+    },
+    "guerra_dos_tronos": {
+      "id": "guerra_dos_tronos",
+      "nome": "A Guerra dos Tronos",
+      "autor": "George R.R. Martin",
+      "lido": true
+    },
+    "teste": {
+      "id": "teste",
+      "nome": "teste",
+      "autor": "J.R.R. Tolkien",
+      "lido": false
+    }
+  },
+  "usuarios": {
+    "USER-hjcha": {
+      "id": "USER-hjcha",
+      "nome": "Ana",
+      "login": "ana",
+      "senha": "0c01398162c110e31c7ee5bfe7baca0b4c01040160c17e2f697932c382f1be78IbLlOVBpQINkl0T8CiHnSA==df0fc9cf1ba1eaee81c4f5c8e35358947baf82f5f83b28f545c9b2a9eaea7eb6",
+      "email": "ana@ana.com",
+      "role": "user"
+    },
+    "USER-sHIEB": {
+      "id": "USER-sHIEB",
+      "nome": "Admininstrador",
+      "login": "admin",
+      "senha": "3708c29c1b063e1b80d3daf35833cd9190abeef43b2cfbb11c53019d481c1790sbLMzSFWLMoTsrenas4+3Q==4d0982fd9f045277db6cde21d4608f9f232deec3ced829b6eccd861d8927e83f",
+      "email": "admin@admin.com",
+      "role": "admin"
+    },
+    "USER-dpgS9": {
+      "id": "USER-dpgS9",
+      "nome": "victoria",
+      "login": "victoria",
+      "senha": "4bc57f73664241dc357c4e0951b2da9a1715328fdced930143ad58067a9fb435Km7xVVNFdC+kJoJroiyMFQ==e6533945bc354bff6c41959034d7f127c6d6c569517768de3b94c171f47f5e09",
+      "email": "victoria@victoria.com",
+      "role": "user"
+    },
+    "USER-w4Dbd": {
+      "id": "USER-w4Dbd",
+      "nome": "Claudio",
+      "login": "claudio",
+      "senha": "efe49c4fb9f8319fb5bd43a6003cccf9fe5d2d06f3151b601fb973ff2a1e60c8yRvoXVVy7OUGWPZN4l+4PQ==1c289ce6354b6c508fb0441f6d78a30f3f720042b044c1ebdfda69551ecf9b35",
+      "email": "claudio@claudio.com",
+      "role": "user"
+    }
+  }
+}

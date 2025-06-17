@@ -1,0 +1,651 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API de Mídias Geek e Fantasia",
+    "description": "Uma API para gerenciar coleções de Filmes Geek, Games Indie e Livros de Fantasia Medieval."
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Insira o token JWT no formato: Bearer {seu_token}"
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ],
+  "paths": {
+    "/auth": {
+      "post": {
+        "tags": [
+          "AUTHORIZATION"
+        ],
+        "security": [],
+        "summary": "Autoriza e gera token",
+        "description": "Devolve um token válido para acesso às rotas protegidas. Esta rota é pública.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "auth",
+            "description": "Objeto para autenticação de usuário.",
+            "schema": {
+              "type": "object",
+              "required": [
+                "senha",
+                "email"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "ana@ana.com"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "12345"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação bem sucedida, token gerado."
+          },
+          "400": {
+            "description": "Credenciais inválidas ou ausentes."
+          }
+        }
+      }
+    },
+    "/usuarios": {
+      "get": {
+        "tags": [
+          "USUARIOS"
+        ],
+        "summary": "Retorna usuários",
+        "description": "Retorna todos os usuários existentes.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação bem sucedida."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "USUARIOS"
+        ],
+        "summary": "Adiciona usuário",
+        "description": "Adiciona um usuário na lista de usuários. Apenas para administradores.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "usuario",
+            "description": "Objeto que descreve um usuário.",
+            "schema": {
+              "type": "object",
+              "required": [
+                "nome",
+                "login",
+                "senha",
+                "email"
+              ],
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Ana"
+                },
+                "login": {
+                  "type": "string",
+                  "example": "ana"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "12345"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "ana@ana.com"
+                },
+                "role": {
+                  "type": "string",
+                  "example": "user"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Operação de inserção bem sucedida."
+          },
+          "403": {
+            "description": "Acesso negado. Requer privilégios de administrador."
+          }
+        }
+      }
+    },
+    "/usuarios/{id}": {
+      "put": {
+        "tags": [
+          "USUARIOS"
+        ],
+        "summary": "Altera um usuário existente",
+        "description": "Altera os dados de um usuário específico. Apenas para administradores.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do usuário a ser alterado.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "usuario",
+            "in": "body",
+            "description": "Objeto com os dados do usuário a serem atualizados.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Ana Silva"
+                },
+                "login": {
+                  "type": "string",
+                  "example": "ana.silva"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "ana.silva@example.com"
+                },
+                "role": {
+                  "type": "string",
+                  "example": "user"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário alterado com sucesso."
+          },
+          "403": {
+            "description": "Acesso negado. Requer privilégios de administrador."
+          },
+          "404": {
+            "description": "Usuário não encontrado."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "USUARIOS"
+        ],
+        "summary": "Deleta um usuário",
+        "description": "Deleta um usuário específico. Apenas para administradores.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do usuário a ser deletado.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário excluído com sucesso."
+          },
+          "403": {
+            "description": "Acesso negado. Requer privilégios de administrador."
+          },
+          "404": {
+            "description": "Usuário não encontrado."
+          }
+        }
+      }
+    },
+    "/games_indie": {
+      "get": {
+        "tags": [
+          "GAMES_INDIE"
+        ],
+        "summary": "Retorna jogos indie",
+        "description": "Retorna todos os jogos indie existentes.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação bem sucedida."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "GAMES_INDIE"
+        ],
+        "summary": "Adiciona jogo indie",
+        "description": "Adiciona um jogo à lista de jogos indie.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "game",
+            "description": "Objeto que descreve um jogo indie.",
+            "schema": {
+              "type": "object",
+              "required": [
+                "nome",
+                "genero",
+                "plataforma"
+              ],
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Inside"
+                },
+                "genero": {
+                  "type": "string",
+                  "example": "Puzzle/Plataforma"
+                },
+                "plataforma": {
+                  "type": "string",
+                  "example": "Multiplataforma"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Operação de inserção bem sucedida."
+          }
+        }
+      }
+    },
+    "/games_indie/{id}": {
+      "put": {
+        "tags": [
+          "GAMES_INDIE"
+        ],
+        "summary": "Altera jogo indie",
+        "description": "Altera um jogo na lista de jogos indie.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "ID do jogo a ser alterado.",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "game",
+            "description": "Objeto que descreve um jogo indie.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Inside"
+                },
+                "genero": {
+                  "type": "string",
+                  "example": "Puzzle/Plataforma"
+                },
+                "plataforma": {
+                  "type": "string",
+                  "example": "Multiplataforma"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação de alteração bem sucedida."
+          },
+          "404": {
+            "description": "Jogo não encontrado."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "GAMES_INDIE"
+        ],
+        "summary": "Remove jogo indie",
+        "description": "Remove um jogo da lista de jogos indie.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "ID do jogo a ser removido.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação de remoção bem sucedida."
+          },
+          "404": {
+            "description": "Jogo não encontrado."
+          }
+        }
+      }
+    },
+    "/filmes_geek": {
+      "get": {
+        "tags": [
+          "FILMES_GEEK"
+        ],
+        "summary": "Retorna filmes geek",
+        "description": "Retorna todos os filmes geek existentes.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação bem sucedida."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "FILMES_GEEK"
+        ],
+        "summary": "Adiciona filme geek",
+        "description": "Adiciona um filme à lista de filmes geek.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "filme",
+            "description": "Objeto que descreve um filme geek.",
+            "schema": {
+              "type": "object",
+              "required": [
+                "nome",
+                "ano",
+                "duracao"
+              ],
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Blade Runner 2049"
+                },
+                "ano": {
+                  "type": "number",
+                  "example": 2017
+                },
+                "duracao": {
+                  "type": "number",
+                  "example": 163
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Operação de inserção bem sucedida."
+          }
+        }
+      }
+    },
+    "/filmes_geek/{id}": {
+      "put": {
+        "tags": [
+          "FILMES_GEEK"
+        ],
+        "summary": "Altera filme geek",
+        "description": "Altera um filme na lista de filmes geek.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "ID do filme a ser alterado.",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "filme",
+            "description": "Objeto que descreve um filme geek.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Blade Runner 2049"
+                },
+                "ano": {
+                  "type": "number",
+                  "example": 2017
+                },
+                "duracao": {
+                  "type": "number",
+                  "example": 163
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação de alteração bem sucedida."
+          },
+          "400": {
+            "description": "Filme não existe."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "FILMES_GEEK"
+        ],
+        "summary": "Remove filme geek",
+        "description": "Remove um filme da lista de filmes geek.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "ID do filme a ser removido.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação de remoção bem sucedida."
+          },
+          "400": {
+            "description": "Filme não existe."
+          }
+        }
+      }
+    },
+    "/livros_fantasia_medieval": {
+      "get": {
+        "tags": [
+          "LIVROS_FANTASIA"
+        ],
+        "summary": "Retorna livros de fantasia",
+        "description": "Retorna todos os livros de fantasia medieval existentes.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação bem sucedida."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "LIVROS_FANTASIA"
+        ],
+        "summary": "Adiciona livro de fantasia",
+        "description": "Adiciona um livro à lista de livros de fantasia.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "livro",
+            "description": "Objeto que descreve um livro de fantasia.",
+            "schema": {
+              "type": "object",
+              "required": [
+                "nome",
+                "autor",
+                "lido"
+              ],
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "O Hobbit"
+                },
+                "autor": {
+                  "type": "string",
+                  "example": "J.R.R. Tolkien"
+                },
+                "lido": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Operação de inserção bem sucedida."
+          }
+        }
+      }
+    },
+    "/livros_fantasia_medieval/{id}": {
+      "put": {
+        "tags": [
+          "LIVROS_FANTASIA"
+        ],
+        "summary": "Altera livro de fantasia",
+        "description": "Altera um livro na lista de livros de fantasia.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "ID do livro a ser alterado.",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "livro",
+            "description": "Objeto que descreve um livro de fantasia.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "O Hobbit"
+                },
+                "autor": {
+                  "type": "string",
+                  "example": "J.R.R. Tolkien"
+                },
+                "lido": {
+                  "type": "boolean",
+                  "example": true
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação de alteração bem sucedida."
+          },
+          "404": {
+            "description": "Livro não encontrado."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "LIVROS_FANTASIA"
+        ],
+        "summary": "Remove livro de fantasia",
+        "description": "Remove um livro da lista de livros de fantasia.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "description": "ID do livro a ser removido.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação de remoção bem sucedida."
+          },
+          "404": {
+            "description": "Livro não encontrado."
+          }
+        }
+      }
+    }
+  }
+}
