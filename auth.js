@@ -67,7 +67,6 @@ const auth = {
         })
     },
 
-    // A função que estava faltando ou estava fora do objeto 'auth'
     middlewareAdmin(req, res, next) {
         if (!isAUTH) {
             next()
